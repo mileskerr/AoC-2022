@@ -22,31 +22,25 @@ int main() {
 
     int total = 0;
 
-    char first_comp_items[60];
-    char second_comp_items[60];
+    char first_comp_items[58];
 
     while ((ch = fgetc(fp)) != EOF) {
         if (ch != '\n') {
             line[col] = ch;
             col++;
         } else {
-            for (int i = 0; i < 60; i ++) { //clear arrays
-                first_comp_items[i] = second_comp_items[i] = 0;
+            for (int i = 0; i < 58; i ++) { //clear array
+                first_comp_items[i] = 0;
             }
             for (int i = 0; i < ((col-1) / 2)+1; i++) {
-                first_comp_items[line[i] - 64] = 1;
+                first_comp_items[line[i] - 65] = 1;
             }
             for (int i = ((col-1) / 2)+1; i < col; i++) {
-                second_comp_items[line[i] - 64] = 1;
-            }
-            for (int i = 0; i < 60; i ++) { //compare items
-                if (first_comp_items[i] && second_comp_items[i]) {
-                    printf("%c\n",i+64);
-                    total += priority(i + 64);
+                if (first_comp_items[line[i] - 65]) {
+                    total += priority(line[i]);
                     break;
                 }
             }
-            printf("---\n");
             col = 0;
         }
     }

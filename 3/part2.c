@@ -22,32 +22,30 @@ int main() {
 
     int total = 0;
 
-    char items[3][60];
+    char items[3][58];
 
     for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 60; j++) {
+        for (int j = 0; j < 58; j++) {
             items[i][j] = 0;
         }
     }
-    printf("hello\n");
-
     while ((ch = fgetc(fp)) != EOF) {
         if (ch == '\n') {
             if (line == 2) { //end of group
                 line = 0; 
-                for (int i = 0; i < 60; i++) {
+                for (int i = 0; i < 58; i++) {
                     if (items[0][i] && items[1][i] && items[2][i]) {
-                        total += priority(i + 64);
+                        total += priority(i + 65);
                     }
                 }
                 for (int i = 0; i < 3; i++) { //clear items
-                    for (int j = 0; j < 60; j++) {
+                    for (int j = 0; j < 58; j++) {
                         items[i][j] = 0;
                     }
                 }
             } else { line++; }
         } else {
-            items[line][ch - 64] = 1;
+            items[line][ch - 65] = 1;
         }
     }
 
